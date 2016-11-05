@@ -58,9 +58,17 @@ y2 = y0 + d2*t2;
 z1 = z0 + d3*t1;
 z2 = z0 + d3*t2;
 
+% This handles the case where the ray comes from the outside of the cone
+% and intersects it twice, once from the outside and once from the inside.
+% If that happens, then in reality the ray will not intersect the second
+% time in the inside of the cone and therefore shouldn't be considered
+%if y1 > 0 && y2 > 0 && y1 ~= y2 && z1 >0 && z2 < height && z1 > 0 && z1<height
+%   t = NaN; 
+%   return
+%end
 
 %This just incorporates what is written above
-if y1 > 0
+if y1 > 0 && t1>0
     if z1>0 && z1<height
         t = t1;
         return
@@ -69,14 +77,15 @@ if y1 > 0
     return
 end
 
-if y2 > 0
-     if z1>0 && z1<height
+if y2 > 0 && t2 >0
+     if z2>0 && z2<height
         t = t2;
         return
     end
     t = NaN;
     return
 end
+
 
  t = NaN;
 end

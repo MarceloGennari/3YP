@@ -13,5 +13,11 @@ for n = 1:length(FinalValueT)
    counter = counter+1;
 end
 
+% If there are no intersections, then the program is terminated
+if counter == 1
+    close all
+    error('There are no points of intersections');
+end
+
 end
 

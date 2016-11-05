@@ -1,8 +1,8 @@
 clear
 
-Direction = [0;0;-1];
+Direction = [0;-0.839099;-1];
 Direction = Direction/norm(Direction);
-[InitialPoints Directions] = generateBeamLight(6,0,5,Direction,10,10,10000);
+[InitialPoints Directions] = generateBeamLight(6,0,2,Direction,10,10,10000);
 
 height = 4;
 radius=1;

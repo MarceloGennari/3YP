@@ -31,9 +31,9 @@ Direction = Direction/norm(Direction);
     
 %Defining the cone:
     centreVector = [0;-0.5;-3];
-    height = 4;
+    height = 3;
     radius=1;
-    radiusChange = 4;
+    radiusChange = 3;
     
 %%Plotting Cone
     plottingCone(radius, radiusChange, height, centreVector);
@@ -55,7 +55,10 @@ InitialPoints(1,:) = InitialPoints(1,:) + ones(1,length(InitialPoints(1,:))).*ce
 InitialPoints(2,:) = InitialPoints(2,:) + ones(1,length(InitialPoints(2,:))).*centreVector(2,1);
 InitialPoints(3,:) = InitialPoints(3,:) + ones(1,length(InitialPoints(3,:))).*centreVector(3,1);
 
-plottingMatrixLines(InitialPoints,Directions,FinalValuesT,'b');
+InitialPointsToBePlotted = getMatricesIntersect(InitialPoints,FinalValuesT);
+DirectionsToBePlotted = getMatricesIntersect(Directions,FinalValuesT);
+
+plottingMatrixLines(InitialPointsToBePlotted,DirectionsToBePlotted,FinalValuesT,'b');
 
 %% Reflecting into the Parabola
 
