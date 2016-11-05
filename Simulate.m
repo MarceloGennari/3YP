@@ -5,9 +5,9 @@ hold on;
 %% DEFINING THE BEAM OF LIGHT
 
 xBeamCentre = 0;
-yBeamCentre = 5;
+yBeamCentre = 3;
 zPlaneBeam = 5;
-Direction = [0;-0.6;-1];
+Direction = [0;0;-1];
 Direction = Direction/norm(Direction);
 
 
@@ -96,3 +96,4 @@ figure;
 scatter(XZplane, YZplane);
 xlabel('x');
 ylabel('y');
+axis([-2 2 -1 1])

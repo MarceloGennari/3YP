@@ -1,9 +1,8 @@
 clear
 
-Direction = [-0.5;-0.2;-1];
+Direction = [0;0;-1];
 Direction = Direction/norm(Direction);
-[InitialPoints Directions] = generateBeamLight(6,0,3,Direction,5,5,25);
-
+[InitialPoints Directions] = generateBeamLight(6,0,5,Direction,10,10,10000);
 
 height = 4;
 radius=1;
@@ -22,7 +21,8 @@ FinalValuesT = getMatrixIntersCone(InitialPoints,Directions,radius,radiusChange,
 Intersections = getPointsIntersCone(InitialPoints,Directions,FinalValuesT);
 Reflected = getReflDirectionsCone(InitialPoints,Directions,radius,radiusChange,height);
 
+InitialPointsToBePlotted = getMatricesIntersect(InitialPoints,FinalValuesT);
+DirectionsToBePlotted = getMatricesIntersect(Directions,FinalValuesT);
 
-
-plottingMatrixLines(InitialPoints,Directions,FinalValuesT,'g');
+plottingMatrixLines(InitialPointsToBePlotted,DirectionsToBePlotted,FinalValuesT,'g');
 plottingMatrixLines(Intersections,Reflected,FinalValuesT,'r');

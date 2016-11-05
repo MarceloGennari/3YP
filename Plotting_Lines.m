@@ -1,5 +1,6 @@
 function Plotting_Lines(InitialPoint, direction, finalValueT, color)
 
+
 t = linspace(0,finalValueT);
 
 directionUnitary = direction/norm(direction);
