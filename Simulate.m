@@ -1,12 +1,16 @@
 close all;
 clear all;
-hold on;
 
+%% GETTING INPUT FOR ANGLE FROM USER
+angle = input('Type an angle between 0 and 90 (in degrees), which is equivalent to the altitude of the sun \n');
+coneToSun = -1; % -1 This indicates that the cone mirror is pointed to the sun. 1 indicates parabolic pointed to the sun
+
+hold on;
 %% DEFINING THE BEAM OF LIGHT
 xBeamCentre = 0;
 yBeamCentre = 3;
 zPlaneBeam = 5;
-Direction = [0;0;-1];
+Direction = [0;coneToSun/tand(angle);-1];
 Direction = Direction/norm(Direction);
 
 %% DEFINING EQUATION OF SURFACE
@@ -78,6 +82,14 @@ zlabel('z');
 %% PLOTTING PARABOLA
     surf(XX,YY,ZZ);
     
+%% TEXT TELLING SPECIFICATION
+if coneToSun == -1
+    title(['1DH Tracking, cone to sun. Sun altitude = ',num2str(angle),'°']);
+end
+if coneToSun == 1
+    title(['1DH Tracking, parabolic to sun. Sun altitude = ',num2str(angle),'°']);
+end
+    
 %% PLOTTING POINTS OF INTERSECTION OF LINES AND PLANE Z=K;
 plane = 0;
 d1 = DirAftIntPMirr(1,:);
@@ -98,4 +110,19 @@ figure;
 scatter(XZplane, YZplane);
 xlabel('x');
 ylabel('y');
-axis([-2 2 -1 1])
+axis([-4 4 -4 4])
+
+%% TEXT TELLING SPECIFICATION
+if coneToSun == -1
+    title(['1DH Tracking, cone to sun. Sun altitude = ',num2str(angle),'°']);
+end
+if coneToSun == 1
+    title(['1DH Tracking, parabolic to sun. Sun altitude = ',num2str(angle),'°']);
+end
+hold on;
+
+plot([-2,-2,2,2,-2],[0,2,2,0,0]);
+pointsInSquare = countingPoints(XZplane, YZplane, -2, 2, 0, 2);
+
+fprintf(['There are ', num2str(length(InitialPointsThatWereReflected)), ' that were reflected in the cone\n']);
+fprintf(['There are ', num2str(pointsInSquare), ' rays in the target region out of ', num2str(length(InitialPointsThatWereReflectedTwice)), ' that were reflected twice \n']);
