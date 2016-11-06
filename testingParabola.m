@@ -6,11 +6,11 @@ close all
 xBeamCentre = 0;
 yBeamCentre = 5;
 zPlaneBeam = 1.5;
-Direction = [0;-1;-1.5];
+Direction = [0;-3.2;-1];
 Direction = Direction/norm(Direction);
     
     %% GETTING RESULTS AS IF CONE WAS IN THE CENTRE 0;0;0
-[InitialPoints Directions] = generateBeamLight(zPlaneBeam,xBeamCentre,yBeamCentre,Direction,3,3,100);
+[InitialPoints Directions] = generateBeamLight(zPlaneBeam,xBeamCentre,yBeamCentre,Direction,1,1,25);
 
 %Plotting parabolic mirror
     a = 0.5;

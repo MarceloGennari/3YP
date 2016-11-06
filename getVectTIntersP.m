@@ -24,8 +24,15 @@ for parm = 1:length(Directions(1,:));
     y0 = initial(2,1);
     z0 = initial(3,1);
 
+    if z0 < -sqrt(y0/parabolicTerm)
+       vect(1,parm) = NaN;
+       continue
+    end
     if abs(d3)<error
-       d3 = 0; 
+       d3 = 0;
+       t = (parabolicTerm*z0^2 - y0)/d2;
+       vect(1,parm) = t;
+       continue
     end
     if d3 ~=0
         a = 1; 
